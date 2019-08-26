@@ -34,12 +34,11 @@ export class Quiz extends Component {
         return (
             <div>
                 <h3 className="text-center">You will have 2 minutes to complete this quiz</h3>
-                <h3 className="text-center">Their will be a word in spanish and all you have to do is type it in english</h3>
+                <h3 className="text-center">There will be a word in spanish and all you have to do is type it in english</h3>
                 <h3 className="text-center">Ready?</h3>
                 <Row className="justify-content-center">
                     <Button onClick={this.startQuiz}>Start Quiz</Button>
                 </Row>
-
             </div>
         );
     }
@@ -55,6 +54,7 @@ export class Quiz extends Component {
             let textBox = document.getElementById(id);
             textBox.disabled = true;
             textBox.className = textBox.className + " correct";
+            textBox.value = userInput;
         }
     }
 
