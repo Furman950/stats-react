@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from '../assets/images/logo.svg';
+import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
 import '../css/App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
 
-export default App;
+import { Layout } from './Layout';
+import { Home } from './Home';
+import { UserDetails } from './UserDetails';
+import { Quiz } from './Quiz';
+import { Results } from './Results';
+import { Forbidden } from './Forbidden';
+import { Leaderboard } from './LeaderBoards';
+import { AnovaResults } from './AnovaResults';
+
+export default class App extends Component {
+  render() {
+    return (
+      <Layout>
+        <Route exact path='/' component={Home} />
+        <Route path='/forbidden' component={Forbidden}/>
+
+        <Route path='/userInfo' component={UserDetails}/>
+        <Route path='/takeQuiz' component={Quiz}/>
+        <Route path='/results/:quizId' component={Results} />
+        <Route path='/anovaResults' component={AnovaResults}/>
+      </Layout>
+    );
+
+  }
+}
