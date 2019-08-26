@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { getQuizById } from '../services/RestService';
 import { LinkContainer } from 'react-router-bootstrap';
-import { Button, Row, Form, InputGroup, Col } from 'react-bootstrap';
+import { Button, Row, Form, InputGroup } from 'react-bootstrap';
 
 export class Results extends Component {
     constructor(props) {
@@ -50,7 +50,7 @@ export class Results extends Component {
         let total = this.state.quizResults.length;
 
         const quizResults = this.state.quizResults.map(question => {
-            let correct = question.correctAnswer == question.userResponse;
+            let correct = question.correctAnswer === question.userResponse;
             if (correct)
                 numCorrect++;
 

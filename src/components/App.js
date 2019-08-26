@@ -9,7 +9,6 @@ import { UserDetails } from './UserDetails';
 import { Quiz } from './Quiz';
 import { Results } from './Results';
 import { Forbidden } from './Forbidden';
-import { Leaderboard } from './LeaderBoards';
 import { AnovaResults } from './AnovaResults';
 
 export default class App extends Component {

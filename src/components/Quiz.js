@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Button, Row, Form, InputGroup } from 'react-bootstrap';
 import { Redirect } from 'react-router-dom';
 import { getQuestions, saveQuiz } from '../services/RestService';
+import logo from '../assets/images/logo.svg';
 import { Timer } from './Timer';
 
 export class Quiz extends Component {
@@ -16,7 +17,8 @@ export class Quiz extends Component {
             quizQuestions: [],
             showInstructions: true,
             goToResults: false,
-            quizId: -1
+            quizId: -1,
+            submitting: false
         }
     }
 
@@ -57,6 +59,9 @@ export class Quiz extends Component {
     }
 
     endQuiz = () => {
+        this.setState({
+            submitting: true
+        })
         let responses = {};
 
         this.state.quizQuestions.map(quizQuestion => {
@@ -124,7 +129,9 @@ export class Quiz extends Component {
                         </Row>
 
                         <Row className="justify-content-center">
-                            <Button variant="primary" onClick={this.endQuiz}>Submit Quiz</Button>
+                {this.state.submitting ? <p>Saving... <img src={logo} width='50' height='50' className="App-logo" /></p> :
+                                <Button onClick={this.endQuiz} isDisabled={this.state.submitting}>Submit Quiz</Button>
+                            }
                         </Row>
                     </div>
                 }
