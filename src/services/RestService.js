@@ -15,12 +15,8 @@ function getCategorieTypes() {
 
 
 function getConfig() {
-    // let username = sessionStorage.getItem('username');
-    // let passwordToken = sessionStorage.getItem('passwordToken');
     return {
         headers: {
-            // "username": username,
-            // "passwordToken": passwordToken,
             "Access-Control-Allow-Origin": "*",
             "Access-Control-Allow-Methods": "*",
             "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization",
