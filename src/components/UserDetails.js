@@ -33,7 +33,6 @@ export class UserDetails extends Component {
     };
 
     render() {
-
         if (this.state.goToQuiz) {
             return <Redirect to={{
                 pathname: '/takeQuiz',

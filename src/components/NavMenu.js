@@ -13,6 +13,12 @@ export class NavMenu extends Component {
                 <LinkContainer to='/'>
                     <Nav.Link>Home</Nav.Link>
                 </LinkContainer>
+                <LinkContainer to='/login'>
+                    <Nav.Link>Login</Nav.Link>
+                </LinkContainer>
+                <LinkContainer to='/signUp'>
+                    <Nav.Link>Sign Up</Nav.Link>
+                </LinkContainer>
                 <LinkContainer to='/anovaResults'>
                     <Nav.Link>Anova Results</Nav.Link>
                 </LinkContainer>

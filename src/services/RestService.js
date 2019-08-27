@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const instance = axios.create({
-    baseURL: "http://ferminsandoval.com:5595"
+    baseURL: "http://localhost:5595"
 });
 
 
@@ -12,7 +12,6 @@ function getQuestions() {
 function getCategorieTypes() {
     return instance.get('/quiz/getCategoryTypes', getConfig());
 }
-
 
 function getConfig() {
     return {
@@ -41,11 +40,31 @@ function getAnovaResults() {
     return instance.get('/quiz/anovaResults');
 }
 
+function login(email, passwordHash) {
+    return instance.post('/user/login', { email, passwordHash });
+}
+
+function signUp(data) {
+    let firstName = data.firstName;
+    let lastName = data.lastName;
+    let email = data.email;
+    let passwordHash = data.passwordHash;
+    return instance.post('/user/signUp', { firstName, lastName, email, passwordHash });
+}
+
+function getUserInfoById(userId) {
+    return instance.post('/user/info', { userId });
+}
+
+
 export {
     getQuestions,
     getCategorieTypes,
     saveQuiz,
     getQuizById,
     getLeaderBoard,
-    getAnovaResults
+    getAnovaResults,
+    login,
+    signUp,
+    getUserInfoById
 }
