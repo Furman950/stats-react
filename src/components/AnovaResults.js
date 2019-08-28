@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Jumbotron, Row, Card, ListGroupItem, ListGroup } from 'react-bootstrap';
+import { Jumbotron, Row, Card, ListGroupItem, ListGroup, Col } from 'react-bootstrap';
 import { getAnovaResults } from '../services/RestService';
 
 export class AnovaResults extends Component {
@@ -19,6 +19,7 @@ export class AnovaResults extends Component {
     componentDidMount() {
         getAnovaResults()
             .then(res => {
+                console.log(res.data);
                 this.setState({
                     xBarGM: res.data.xBarGM,
                     bigN: res.data.bigN,
@@ -34,21 +35,29 @@ export class AnovaResults extends Component {
     render() {
         const categories = this.state.categoryStats.map(category => {
             return (
-                <Card>
-                    {/* <Card.Body> */}
+                <Col className="col-md-3">
+                    <Card>
+                        {/* <Card.Body> */}
                         <Card.Header as="h5">{category.category}</Card.Header>
-                    {/* </Card.Body> */}
-                    <ListGroup>
-                        <ListGroupItem>&Sigma;x = {category.summation}</ListGroupItem>
-                        <ListGroupItem>(&Sigma;x)<sup>2</sup> = {category.summationSquared}</ListGroupItem>
-                        <ListGroupItem>&Sigma;x<sup>2</sup> = {category.eachXSquaredSummation}</ListGroupItem>
-                        <ListGroupItem>x&#x0304; = {category.xBar}</ListGroupItem>
-                        <ListGroupItem>n = {category.n}</ListGroupItem>
-                    </ListGroup>
+                        {/* </Card.Body> */}
+                        <ListGroup>
+                            <ListGroupItem>&Sigma;x = {category.summation}</ListGroupItem>
+                            <ListGroupItem>(&Sigma;x)<sup>2</sup> = {category.summationSquared}</ListGroupItem>
+                            <ListGroupItem>&Sigma;x<sup>2</sup> = {category.eachXSquaredSummation}</ListGroupItem>
+                            <ListGroupItem>x&#x0304; = {category.xBar}</ListGroupItem>
+                            <ListGroupItem>n = {category.n}</ListGroupItem>
+                        </ListGroup>
+                    </Card>
 
-                </Card>
+                    <Card className="top-buffer">
+                        <Card.Header as="h5"><strong>Data</strong></Card.Header>
+                        <ListGroup>
+                            {category.data.map(score => <ListGroupItem>{score}</ListGroupItem>)}
+                        </ListGroup>
+                    </Card>
+                </Col>
             );
-        })
+        });
         return (
             <div>
                 <h3 className="text-center top-buffer">ANOVA Results</h3>
